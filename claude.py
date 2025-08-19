@@ -44,7 +44,7 @@ class BabyClaude:
         self.session_start = datetime.datetime.now()
         
         # Configuration - can be moved to environment variables
-        self.model = os.getenv('CLAUDE_MODEL', 'claude-opus-4-1-20250805')
+        self.model = os.getenv('CLAUDE_MODEL', 'claude-3-5-haiku-20241022')
         self.max_tokens = int(os.getenv('MAX_TOKENS', '4000'))
         self.save_dir = Path(os.getenv('SAVE_DIR', '.'))
         
@@ -57,7 +57,8 @@ class BabyClaude:
         header = f"""
 {Colors.colorize('╔══════════════════════════════════════════════╗', Colors.BOLD + Colors.CLAUDE)}
 {Colors.colorize('║  🤖 Baby Claude - Your Personal AI Assistant ║', Colors.BOLD + Colors.CLAUDE)}
-{Colors.colorize('║          Powered by Anthropic Claude          ║', Colors.BOLD + Colors.CLAUDE)}
+{Colors.colorize('║          Powered by Anthropic Claude         ║', Colors.BOLD + Colors.CLAUDE)}
+{Colors.colorize('║       Proudly developed by @JeremLeOuf       ║', Colors.BOLD + Colors.CLAUDE)}
 {Colors.colorize('╚══════════════════════════════════════════════╝', Colors.BOLD + Colors.CLAUDE)}
 
 {Colors.colorize(welcome_msg, Colors.OKCYAN)}
