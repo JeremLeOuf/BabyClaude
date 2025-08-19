@@ -1,2 +1,6 @@
+# Core dependencies
 anthropic>=0.64.0
 python-dotenv>=1.0.0
+
+# Optional: For better cross-platform terminal colors
+# colorama>=0.4.6
