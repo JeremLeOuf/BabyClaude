@@ -1,0 +1,42 @@
+#!/bin/bash
+# 🤖 Baby Claude Portable Launcher
+
+# Colors for beautiful output
+CYAN='\033[96m'
+GREEN='\033[92m'
+YELLOW='\033[93m'
+RED='\033[91m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+# Get script directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VENV_DIR="$SCRIPT_DIR/venv"
+CLAUDE_SCRIPT="$SCRIPT_DIR/claude.py"
+ENV_FILE="$SCRIPT_DIR/.env"
+
+# Check if virtual environment exists
+if [ ! -d "$VENV_DIR" ]; then
+    echo -e "${RED}❌ Virtual environment not found!${NC}"
+    echo -e "${YELLOW}💡 Please run ./install.sh first${NC}"
+    exit 1
+fi
+
+# Check if .env file exists
+if [ ! -f "$ENV_FILE" ]; then
+    echo -e "${RED}❌ .env file not found!${NC}"
+    echo -e "${YELLOW}💡 Please copy .env.template to .env and add your API key${NC}"
+    exit 1
+fi
+
+# Check if API key is set
+if grep -q "your_api_key_here" "$ENV_FILE"; then
+    echo -e "${RED}❌ Please set your API key in .env file${NC}"
+    echo -e "${YELLOW}💡 Edit .env and replace 'your_api_key_here' with your actual API key${NC}"
+    exit 1
+fi
+
+# Activate virtual environment and run Claude
+source "$VENV_DIR/bin/activate"
+python "$CLAUDE_SCRIPT" "$@"
+deactivate
