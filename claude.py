@@ -4,12 +4,12 @@
 A beautiful and enhanced Claude interface with colors, emojis, and features!
 """
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 import os
 import sys
 import datetime
 import json
-from anthropic import Anthropic
+from anthropic import Anthropic # type: ignore
 from typing import List, Dict
 from pathlib import Path
 
@@ -44,7 +44,7 @@ class BabyClaude:
         self.session_start = datetime.datetime.now()
         
         # Configuration - can be moved to environment variables
-        self.model = os.getenv('CLAUDE_MODEL', 'claude-3-5-sonnet-20241022')
+        self.model = os.getenv('CLAUDE_MODEL', 'claude-opus-4-1-20250805')
         self.max_tokens = int(os.getenv('MAX_TOKENS', '4000'))
         self.save_dir = Path(os.getenv('SAVE_DIR', '.'))
         

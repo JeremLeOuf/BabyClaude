@@ -166,11 +166,13 @@ source "$VENV_DIR/bin/activate"
 
 # Install dependencies
 echo -e "${CYAN}📦 Installing dependencies...${NC}"
-pip install --upgrade pip
-pip install -r requirements.txt
+pip install --upgrade pip --quiet
+pip install -r requirements.txt --quiet
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}❌ Failed to install dependencies${NC}"
+    echo -e "${YELLOW}💡 Re-running with verbose output for debugging...${NC}"
+    pip install -r requirements.txt
     exit 1
 fi
 
